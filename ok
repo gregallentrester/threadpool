@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+if [ -z "$1" ]; then
+
+  echo;echo "Please supply a Threadpool Factor.";echo
+  return
+fi
+
+
+NC='\033[0m'
+GRN='\033[0;32m'
+
+
+# 12-factorization
+export DAEMON="TRUE"
+
+
+clear
+
+mvn clean install -B
+rm dependency-reduced-pom.xml
+
+
+echo;echo
+echo -e "${GRN}12-Factor CLI | ßash Shell variable 'DAEMON':"
+echo -e "$DAEMON${NC}"
+echo "...";echo;echo
+
+
+java -jar target/daemonthreadpool.jar "$@"
